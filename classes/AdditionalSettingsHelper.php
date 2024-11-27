@@ -122,7 +122,7 @@ class AdditionalSettingsHelper {
      * @return array
      *
      */
-    public function usernamequerypart ($username) {
+    public function usernamequerypart($username) {
         global $DB;
         $params = array();
         $whereclausearray1 = array();
@@ -159,7 +159,7 @@ class AdditionalSettingsHelper {
      * @return array
      *
      */
-    public function emailquerypart ($email, $username) {
+    public function emailquerypart($email, $username) {
         global $DB;
         $params = array();
         $whereclausearray1 = array();
@@ -264,7 +264,7 @@ class AdditionalSettingsHelper {
      * @param int $courseid The id of the course.
      * @return array
      */
-    public function searchbycourseid ($courseid) {
+    public function searchbycourseid($courseid) {
         global $DB;
         $sql = "SELECT *
             from  {quizaccess_proctoring_logs} e
@@ -280,7 +280,7 @@ class AdditionalSettingsHelper {
      * @param int $quizid The id of the quiz.
      * @return array
      */
-    public function searchbyquizid ($quizid) {
+    public function searchbyquizid($quizid) {
         global $DB;
         $sql = "SELECT *
             from  {quizaccess_proctoring_logs} e
@@ -296,7 +296,7 @@ class AdditionalSettingsHelper {
      *
      * @return array
      */
-    public function getalldata () {
+    public function getalldata(){
         global $DB;
         $sql = "SELECT
         e.id as reportid,
@@ -327,7 +327,7 @@ class AdditionalSettingsHelper {
      * @param string $deleteidstring The id of the quiz.
      * @return void
      */
-    public function deletelogs ($deleteidstring) {
+    public function deletelogs($deleteidstring){
         global $DB;
         $deleteids = explode(",", $deleteidstring);
         if (count($deleteids) > 0) {

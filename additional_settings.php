@@ -38,7 +38,7 @@ $context = context_module::instance($cmid, MUST_EXIST);
 require_capability('quizaccess/proctoring:deletecamshots', $context);
 
 $params = array(
-    'cmid' => $cmid
+    'cmid' => $cmid,
 );
 /**
  * Path for additional settings.
@@ -77,7 +77,7 @@ if ($formtype == 'Search') {
     $url2 = new moodle_url(
         ADDITIONAL_SETTINGS,
         array(
-            'cmid' => $cmid
+            'cmid' => $cmid,
         )
     );
     redirect($url2, 'Images deleted!', -11);

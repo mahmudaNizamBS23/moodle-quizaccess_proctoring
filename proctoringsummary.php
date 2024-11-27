@@ -41,12 +41,9 @@ $context = context_module::instance($cmid, MUST_EXIST);
 require_capability('quizaccess/proctoring:deletecamshots', $context);
 
 $params = array(
-    'cmid' => $cmid
+    'cmid' => $cmid,
 );
-$url = new moodle_url(
-    '/mod/quiz/accessrule/proctoring/proctoringsummary.php',
-    $params
-);
+$url = new moodle_url('/mod/quiz/accessrule/proctoring/proctoringsummary.php',$params);
 
 list ($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
 

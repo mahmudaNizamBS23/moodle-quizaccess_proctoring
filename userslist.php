@@ -72,7 +72,7 @@ $baseurl = new moodle_url('/mod/quiz/accessrule/proctoring/userslist.php', array
 $templatecontext = (object)[
     'users' => array_values($users),
     'redirecturl' => new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php'),
-    'settingsurl' => new moodle_url('/admin/settings.php?section=modsettingsquizcatproctoring')
+    'settingsurl' => new moodle_url('/admin/settings.php?section=modsettingsquizcatproctoring'),
 ];
 
 echo $OUTPUT->render_from_template('quizaccess_proctoring/users_list', $templatecontext);

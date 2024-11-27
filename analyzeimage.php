@@ -40,7 +40,7 @@ $params = array(
     "quizid" => $cmid,
     "cmid" => $cmid,
     "studentid" => $studentid,
-    "reportid" => $reportid
+    "reportid" => $reportid,
 );
 $redirecturl = new moodle_url('/mod/quiz/accessrule/proctoring/report.php', $params);
 if ($fcmethod == "AWS") {

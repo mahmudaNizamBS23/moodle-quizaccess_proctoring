@@ -34,7 +34,8 @@ require_once($CFG->dirroot.'/mod/quiz/accessrule/proctoring/lib.php');
 class InitiateFacematchTask extends scheduled_task {
     /**
      * Returns name of task.
-     *
+     *@copyright  2021 Brain station 23 ltd
+     * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
      * @return string
      */
     public function get_name() {

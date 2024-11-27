@@ -41,12 +41,12 @@ class quizaccess_proctoring_external extends external_api {
      *
      * @return external_function_parameters
      */
-    public static function get_camshots_parameters () {
+    public static function get_camshots_parameters() {
         return new external_function_parameters(
             array(
                 'courseid' => new external_value(PARAM_INT, 'camshot course id'),
                 'quizid' => new external_value(PARAM_INT, 'camshot quiz id'),
-                'userid' => new external_value(PARAM_INT, 'camshot user id')
+                'userid' => new external_value(PARAM_INT, 'camshot user id'),
             )
         );
     }
@@ -70,7 +70,7 @@ class quizaccess_proctoring_external extends external_api {
         $params = array(
             'courseid' => $courseid,
             'quizid' => $quizid,
-            'userid' => $userid
+            'userid' => $userid,
         );
 
         // Validate the params.
@@ -134,7 +134,7 @@ class quizaccess_proctoring_external extends external_api {
                     ),
                     'list of camshots'
                 ),
-                'warnings' => new external_warnings()
+                'warnings' => new external_warnings(),
             )
         );
     }
@@ -145,7 +145,7 @@ class quizaccess_proctoring_external extends external_api {
      *
      * @return external_function_parameters
      */
-    public static function send_camshot_parameters () {
+    public static function send_camshot_parameters() {
         return new external_function_parameters(
             array(
                 'courseid' => new external_value(PARAM_INT, 'course id'),
@@ -155,7 +155,7 @@ class quizaccess_proctoring_external extends external_api {
                 'imagetype' => new external_value(PARAM_INT, 'image type'),
                 'parenttype' => new external_value(PARAM_RAW, 'Face image parent type'),
                 'faceimage' => new external_value(PARAM_RAW, 'Face Image'),
-                'facefound' => new external_value(PARAM_INT, 'Face found flag')
+                'facefound' => new external_value(PARAM_INT, 'Face found flag'),
             )
         );
     }
@@ -193,7 +193,7 @@ class quizaccess_proctoring_external extends external_api {
                 'imagetype' => $imagetype,
                 'parenttype' => $parenttype,
                 'faceimage' => $faceimage,
-                'facefound' => $facefound
+                'facefound' => $facefound,
             )
         );
         $warnings = array();
@@ -278,7 +278,7 @@ class quizaccess_proctoring_external extends external_api {
         return new external_single_structure(
             array(
                 'screenshotid' => new external_value(PARAM_INT, 'screenshot sent id'),
-                'warnings' => new external_warnings()
+                'warnings' => new external_warnings(),
             )
         );
     }
@@ -310,7 +310,7 @@ class quizaccess_proctoring_external extends external_api {
      * @param $data
      * @return string
      */
-    private static function add_timecode_to_image ($data) {
+    private static function add_timecode_to_image($data) {
         global $CFG;
 
         $image = imagecreatefromstring($data);
@@ -339,7 +339,7 @@ class quizaccess_proctoring_external extends external_api {
                 'webcampicture' => new external_value(PARAM_RAW, 'webcam photo'),
                 'parenttype' => new external_value(PARAM_RAW, 'Face image parent type'),
                 'faceimage' => new external_value(PARAM_RAW, 'Face Image'),
-                'facefound' => new external_value(PARAM_INT, 'Face found flag')
+                'facefound' => new external_value(PARAM_INT, 'Face found flag'),
             )
         );
     }
@@ -374,7 +374,7 @@ class quizaccess_proctoring_external extends external_api {
                 'webcampicture' => $webcampicture,
                 'parenttype' => $parenttype,
                 'faceimage' => $faceimage,
-                'facefound' => $facefound
+                'facefound' => $facefound,
             )
         );
         $warnings = array();
@@ -432,7 +432,6 @@ class quizaccess_proctoring_external extends external_api {
         $record->facefound = $facefound;
         $record->timemodified = time();
         $faceimageid = $DB->insert_record('proctoring_face_images', $record, true);
-        
         $profileimageurl = quizaccess_proctoring_get_image_url( $USER->id);
         if($profileimageurl==false) {
             $result = array();
@@ -479,7 +478,7 @@ class quizaccess_proctoring_external extends external_api {
             array(
                 'screenshotid' => new external_value(PARAM_INT, 'screenshot sent id'),
                 'status' => new external_value(PARAM_TEXT, 'validation response'),
-                'warnings' => new external_warnings()
+                'warnings' => new external_warnings(),
             )
         );
     }

@@ -129,7 +129,7 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
                                     </div>
                                 </div>
                                 <canvas style='display: none;' id='canvas'></canvas>
-                                <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;' id='photo' alt='The screen capture will appear in this box.' />   
+                                <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;' id='photo' alt='The screen capture will appear in this box.'/>   
                             </div>
                         </div>
                     </div>";
@@ -158,7 +158,6 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
                                 </div>
                             <canvas style='display: none;' id='canvas'></canvas>
                             <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;' id='photo' alt='The screen capture will appear in this box.' />
-                        
                             </div>
                         </div>
                     </div>";
@@ -218,7 +217,6 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
             $PAGE->requires->js("/mod/quiz/accessrule/proctoring/amd/build/face-api.min.js", true);
         }  
         $PAGE->requires->js_call_amd('quizaccess_proctoring/startAttempt', 'setup', [$record, $modelurl]);
-
         $mform->addElement('html', "<div class='quiz-check-form'>");
         $profileimageurl = '';
         if ($USER->picture) {

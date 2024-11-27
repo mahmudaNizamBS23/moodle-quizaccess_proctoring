@@ -56,7 +56,7 @@ if ($hassiteconfig) {
 
     $choices = array(
         'BS' => 'BS',
-        'None' => 'None'
+        'None' => 'None',
     );
     $settings->add(new admin_setting_configselect('quizaccess_proctoring/fcmethod',
         get_string('setting:fc_method', 'quizaccess_proctoring'),

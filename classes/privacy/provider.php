@@ -162,7 +162,7 @@ class provider implements
                     $subcontext = [
                         get_string('quizaccess_proctoring', 'quizaccess_proctoring'),
                         'proctoring_logs',
-                        $index
+                        $index,
                     ];
 
                     $data = (object)[

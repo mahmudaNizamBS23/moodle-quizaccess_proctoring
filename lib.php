@@ -54,11 +54,11 @@ const TIMEMODIFIED_AS_TIMEMODIFIED =
 const FROM_QUIZACCESS_PROCTORING_LOGS_INNER_JOIN_USERS =
 ' from {quizaccess_proctoring_logs} e INNER JOIN {user} u  ON u.id = e.userid ';
 
-// require_once(__DIR__ . '/vendor/autoload.php');
+// Require_once(__DIR__ . '/vendor/autoload.php');
 
 $token = "";
 
-// use Aws\Rekognition\RekognitionClient;
+// Use Aws\Rekognition\RekognitionClient;
 
 /**
  * Serve the files.
@@ -127,8 +127,7 @@ function quizaccess_proctoring_get_image_url($userid) {
  * @param int $userid User id
  * @return mixed image file
  */
-function quizaccess_proctoring_get_image_file($userid)
-{
+function quizaccess_proctoring_get_image_file($userid){
     global $DB;
     $context = context_system::instance();
 
@@ -138,8 +137,6 @@ function quizaccess_proctoring_get_image_file($userid)
         foreach ($files as $file) {
             if ($userid == $file->get_itemid() && $file->get_filename() != '.') {
                 // Return the image file
-
-
                 // Get the record ID from the database
                 $record_id = $DB->get_field('proctoring_user_images', 'id', array('user_id' => $userid));
 
