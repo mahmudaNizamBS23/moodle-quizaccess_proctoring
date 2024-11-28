@@ -43,7 +43,7 @@ require_capability('quizaccess/proctoring:deletecamshots', $context);
 $params = array(
     'cmid' => $cmid,
 );
-$url = new moodle_url('/mod/quiz/accessrule/proctoring/proctoringsummary.php',$params);
+$url = new moodle_url('/mod/quiz/accessrule/proctoring/proctoringsummary.php', $params);
 
 list ($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
 
@@ -97,7 +97,7 @@ foreach ($coursesummary as $row) {
     $params1 = array(
         'cmid' => $cmid,
         'type' => 'course',
-        'id' => $row->courseid
+        'id' => $row->courseid,
     );
     $url1 = new moodle_url(
         '/mod/quiz/accessrule/proctoring/bulkdelete.php',
@@ -118,7 +118,7 @@ foreach ($coursesummary as $row) {
             $params2 = array(
                 'cmid' => $cmid,
                 'type' => 'quiz',
-                'id' => $row2->quizid
+                'id' => $row2->quizid,
             );
             $url2 = new moodle_url(
                 '/mod/quiz/accessrule/proctoring/bulkdelete.php',

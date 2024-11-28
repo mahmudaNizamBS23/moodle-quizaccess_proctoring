@@ -172,7 +172,7 @@ class provider implements
                         'userid' => $qaplog->userid,
                         'webcampicture' => $qaplog->webcampicture,
                         'status' => $qaplog->status,
-                        'timemodified' => transform::datetime($qaplog->timemodified)
+                        'timemodified' => transform::datetime($qaplog->timemodified),
                     ];
                     $webcamepic = explode("/", "$qaplog->webcampicture");
                     $webcamepiclast = end($webcamepic);

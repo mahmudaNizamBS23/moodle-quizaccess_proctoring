@@ -54,11 +54,9 @@ const TIMEMODIFIED_AS_TIMEMODIFIED =
 const FROM_QUIZACCESS_PROCTORING_LOGS_INNER_JOIN_USERS =
 ' from {quizaccess_proctoring_logs} e INNER JOIN {user} u  ON u.id = e.userid ';
 
-// Require_once(__DIR__ . '/vendor/autoload.php');
 
 $token = "";
 
-// Use Aws\Rekognition\RekognitionClient;
 
 /**
  * Serve the files.
@@ -127,7 +125,7 @@ function quizaccess_proctoring_get_image_url($userid) {
  * @param int $userid User id
  * @return mixed image file
  */
-function quizaccess_proctoring_get_image_file($userid){
+function quizaccess_proctoring_get_image_file($userid) {
     global $DB;
     $context = context_system::instance();
 
@@ -137,15 +135,14 @@ function quizaccess_proctoring_get_image_file($userid){
         foreach ($files as $file) {
             if ($userid == $file->get_itemid() && $file->get_filename() != '.') {
                 // Return the image file
-                // Get the record ID from the database
-                $record_id = $DB->get_field('proctoring_user_images', 'id', array('user_id' => $userid));
+                // Get the record ID from the database.
+                $recordid = $DB->get_field('proctoring_user_images', 'id', array('user_id' => $userid));
 
-                // Delete the record from the database
+                // Delete the record from the database.
                 $DB->delete_records('proctoring_user_images', array('user_id' => $userid));
 
-                // Delete associated row from proctoring_face_images table
-                $DB->delete_records('proctoring_face_images', array('parentid' => $record_id));
-
+                // Delete associated row from proctoring_face_images table.
+                $DB->delete_records('proctoring_face_images', array('parentid' => $recordid));
 
                 return $file;
             }
@@ -432,8 +429,8 @@ function bs_analyze_specific_quiz($courseid, $cmid, $studentid, $redirecturl) {
     $user = core_user::get_user($studentid);
     $profileimageurl = '';
     $profileimageurl = quizaccess_proctoring_get_image_url($studentid);
-    $redirecturl= new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php', ['id' => $studentid]);
-    if($profileimageurl==false){
+    $redirecturl = new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php', ['id' => $studentid]);
+    if ($profileimageurl == false) {
         redirect(
             $redirecturl,
             "User image is not uploaded. Please upload the image",
@@ -441,7 +438,6 @@ function bs_analyze_specific_quiz($courseid, $cmid, $studentid, $redirecturl) {
             \core\output\notification::NOTIFY_WARNING
         );
     }
-       
     // Update all as attempted.
     $updatesql = 'UPDATE {quizaccess_proctoring_logs}'
         . ' SET awsflag = 1 '
@@ -624,6 +620,13 @@ function bs_analyze_specific_image_from_validate($reportid) {
     return true;
 }
 
+/**
+ * Analyze specific image from validate face without redirect.
+ *
+ * @param int $reportid the context
+ *
+ * @return bool false if no record found
+ */
 function get_face_images($reportid) {
     global $DB;
     $reportdata = $DB->get_record('quizaccess_proctoring_logs', array('id' => $reportid));
@@ -635,8 +638,8 @@ function get_face_images($reportid) {
     }
     $userimagerow = $DB->get_record('proctoring_user_images', array('user_id' => $studentid));
 
-    $redirecturl= new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php', ['id' => $studentid]);
-    if($userimagerow ==false){
+    $redirecturl = new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php', ['id' => $studentid]);
+    if ($userimagerow == false) {
         redirect(
             $redirecturl,
             "User image is not uploaded. Please upload the image",
@@ -775,7 +778,7 @@ function get_token() {
     curl_setopt_array($curl, [
         CURLOPT_URL => $bsapi,
         CURLOPT_HTTPHEADER => array(
-            'Content-Type: multipart/form-data'
+            'Content-Type: multipart/form-data',
         ),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',

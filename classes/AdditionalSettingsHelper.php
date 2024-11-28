@@ -195,7 +195,7 @@ class AdditionalSettingsHelper {
      * @return array
      *
      */
-    public function coursenamequerypart ($coursename, $username) {
+    public function coursenamequerypart($coursename, $username) {
         global $DB;
         $params = array();
         $whereclausearray1 = array();
@@ -231,7 +231,7 @@ class AdditionalSettingsHelper {
      * @return array
      *
      */
-    public function quiznamequerypart ($quizname, $username) {
+    public function quiznamequerypart($quizname, $username) {
         global $DB;
         $params = array();
         $whereclausearray1 = array();
@@ -296,7 +296,7 @@ class AdditionalSettingsHelper {
      *
      * @return array
      */
-    public function getalldata(){
+    public function getalldata() {
         global $DB;
         $sql = "SELECT
         e.id as reportid,
@@ -327,7 +327,7 @@ class AdditionalSettingsHelper {
      * @param string $deleteidstring The id of the quiz.
      * @return void
      */
-    public function deletelogs($deleteidstring){
+    public function deletelogs($deleteidstring) {
         global $DB;
         $deleteids = explode(",", $deleteidstring);
         if (count($deleteids) > 0) {
@@ -365,7 +365,7 @@ class AdditionalSettingsHelper {
      * @param object $filerow The id of the quiz.
      * @return void
      */
-    public function deletefile ($filerow) {
+    public function deletefile($filerow) {
         $fs = get_file_storage();
         $fileinfo = array(
                         'component' => 'quizaccess_proctoring',

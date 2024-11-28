@@ -23,8 +23,6 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
- 
 // In moodle 4.2 or higher there is an update for access rule base class.
 if (class_exists('\mod_quiz\local\access_rule_base')) {
     // If the moodle version is 4.2 or higher.
@@ -124,12 +122,15 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
                                             overflow: hidden;
                                             padding: 5px;
                                         '>
-                                            <video class='img-fluid' id='video' style='background-color: black;'>Video stream not available.</video>
+                                          <video class='img-fluid' id='video' style='background-color: black;'>
+                                          Video stream not available.
+                                          </video>
                                         </div>
                                     </div>
                                 </div>
                                 <canvas style='display: none;' id='canvas'></canvas>
-                                <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;' id='photo' alt='The screen capture will appear in this box.'/>   
+                                <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;'
+                                 id='photo' alt='The screen capture will appear in this box.'/>
                             </div>
                         </div>
                     </div>";
@@ -152,12 +153,16 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
                                     overflow: hidden;
                                     padding: 5px;
                                 '>
-                                        <video class='img-fluid' id='video' style='background-color: black; max-width: 100%; height: auto;'>Video stream not available.</video>
+                                        <video class='img-fluid' id='video' style='background-color: black; max-width: 100%;
+                                        height: auto;'>
+                                        Video stream not available.
+                                        </video>
                                         </div>
                                     </div>
                                 </div>
                             <canvas style='display: none;' id='canvas'></canvas>
-                            <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;' id='photo' alt='The screen capture will appear in this box.' />
+                            <img style='display: none; max-width: 100%; height: auto; margin-top: 20px;'
+                            id='photo' alt='The screen capture will appear in this box.'/>
                             </div>
                         </div>
                     </div>";
@@ -215,7 +220,7 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
         if ($fcmethod == "BS") {
             $modelurl = $CFG->wwwroot . '/mod/quiz/accessrule/proctoring/thirdpartylibs/models';
             $PAGE->requires->js("/mod/quiz/accessrule/proctoring/amd/build/face-api.min.js", true);
-        }  
+        }
         $PAGE->requires->js_call_amd('quizaccess_proctoring/startAttempt', 'setup', [$record, $modelurl]);
         $mform->addElement('html', "<div class='quiz-check-form'>");
         $profileimageurl = '';

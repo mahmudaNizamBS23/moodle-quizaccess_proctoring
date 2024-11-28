@@ -100,7 +100,7 @@ $table->define_headers(
         get_string('coursenameheader', 'quizaccess_proctoring'),
         get_string('quiznameheader', 'quizaccess_proctoring'),
         get_string('dateverified', 'quizaccess_proctoring'),
-        get_string('actions', 'quizaccess_proctoring')
+        get_string('actions', 'quizaccess_proctoring'),
     )
 );
 

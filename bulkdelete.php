@@ -33,7 +33,7 @@ $context = context_module::instance($cmid, MUST_EXIST);
 require_capability('quizaccess/proctoring:deletecamshots', $context);
 
 $params = array(
-    'cmid' => $cmid, 
+    'cmid' => $cmid,
     'type' => $type,
     'id' => $id,
 );

@@ -39,7 +39,7 @@ $PAGE->set_heading(get_string('users_list', 'quizaccess_proctoring'));
 
 echo $OUTPUT->header();
 $proctoringpro = new moodle_url('/mod/quiz/accessrule/proctoring/proctoring_pro_promo.php');
-//proctoring pro banner
+// proctoring pro banner
 $proctoringprogif = $OUTPUT->image_url('proctoring_pro_users_list', 'quizaccess_proctoring');
         echo "<div class='text-center'>";
         echo "<div class='text-center mt-4 mb-4 proctoring_report_overlay_container   rounded' >";

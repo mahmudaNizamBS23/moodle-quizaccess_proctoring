@@ -330,7 +330,7 @@ class quizaccess_proctoring_external extends external_api {
      *
      * @return external_function_parameters
      */
-    public static function validate_face_parameters () {
+    public static function validate_face_parameters() {
         return new external_function_parameters(
             array(
                 'courseid' => new external_value(PARAM_INT, 'course id'),
@@ -433,7 +433,7 @@ class quizaccess_proctoring_external extends external_api {
         $record->timemodified = time();
         $faceimageid = $DB->insert_record('proctoring_face_images', $record, true);
         $profileimageurl = quizaccess_proctoring_get_image_url( $USER->id);
-        if($profileimageurl==false) {
+        if ($profileimageurl == false) {
             $result = array();
             $result['screenshotid'] = $screenshotid;
             $result['status'] = 'photonotuploaded';

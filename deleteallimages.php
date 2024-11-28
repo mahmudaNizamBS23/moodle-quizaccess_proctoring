@@ -14,13 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Delete Images for the quizaccess_proctoring plugin.
- *
- * @package    quizaccess_proctoring
- * @copyright  2020 Brain Station 23
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
- */
+ /**
+  * Delete Images for the quizaccess_proctoring plugin.
+  *
+  * @package    quizaccess_proctoring
+  * @copyright  2020 Brain Station 23
+  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
+  */
+
 require_once(__DIR__ . '/../../../../config.php');
 // No guest autologin.
 require_login(0, false);
@@ -46,15 +47,14 @@ $usersfile = $DB->get_records_sql($filesql);
 $fs = get_file_storage();
 foreach ($usersfile as $file):
     // Prepare file record object.
-    $fileinfo = array(
+    $fileinfo = [
         'component' => 'quizaccess_proctoring',
         'filearea' => 'picture',     // Usually = table name.
-        'itemid' => $file->itemid,               // Usually = ID of row in table.
+        'itemid' => $file->itemid,   // Usually = ID of row in table.
         'contextid' => $context->id, // ID of context.
         'filepath' => '/',           // Any path beginning and ending in /.
-        'filename' => $file->filename); // Any filename.
-
-    // Get file.
+        'filename' => $file->filename, // Any filename.
+    ];
     $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
         $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
 

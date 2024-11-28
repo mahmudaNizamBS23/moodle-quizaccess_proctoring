@@ -23,14 +23,16 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 /**
- * Function to upgrade quizaccess_proctoring.
+ * Upgrades the database schema for the quizaccess_proctoring plugin.
  *
- * @param int $oldversion the version we are upgrading from
- * @return bool result
+ * This function checks the old version of the plugin and applies necessary changes to the database schema, such as
+ * adding new fields or tables, modifying existing ones, or performing other schema adjustments required for the upgrade.
+ *
+ * @param int $oldversion The version of the plugin we are upgrading from.
+ *
+ * @return bool True on success, false on failure.
  */
-
 function xmldb_quizaccess_proctoring_upgrade($oldversion) {
     global $CFG, $DB;
 
