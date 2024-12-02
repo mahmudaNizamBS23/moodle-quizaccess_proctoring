@@ -307,7 +307,7 @@ class quizaccess_proctoring_external extends external_api {
     /**
      * Adds timestamp information to captured image.
      *
-     * @param $data
+     * @param mixed $data
      * @return string
      */
     private static function add_timecode_to_image($data) {
@@ -348,12 +348,12 @@ class quizaccess_proctoring_external extends external_api {
      * Store the Cam shots in Moodle subsystems and insert in log table
      *
      * @param mixed $courseid
-     * @param mixed $screenshotid
-     * @param mixed $quizid Quizid OR cmid
+     * @param mixed $cmid
+     * @param mixed $profileimage
      * @param mixed $webcampicture
-     * @param string $parenttype Parent image type (Admin image/ webcam image)
-     * @param string $faceimage Face image data
-     * @param int $facefound Face found or not (0/1)
+     * @param mixed $parenttype Parent image type (Admin image/ webcam image)
+     * @param mixed $faceimage Face image data
+     * @param bool $facefound Face found or not (0/1)
      *
      * @return array
      * @throws dml_exception
@@ -492,7 +492,7 @@ class quizaccess_proctoring_external extends external_api {
      * @param int $courseid
      * @param stdClass $record
      * @param context $context
-     * @param $fs
+     * @param mixed $fs
      * @return mixed
      */
     private static function geturl(string $data, int $screenshotid, $USER, int $courseid, stdClass $record, $context, $fs) {
@@ -528,8 +528,8 @@ class quizaccess_proctoring_external extends external_api {
      * @param object $USER
      * @param int $courseid
      * @param stdClass $record
-     * @param $context
-     * @param $fs
+     * @param mixed $context
+     * @param mixed $fs
      * @return mixed
      */
     private static function quizaccess_proctoring_geturl_without_timecode(

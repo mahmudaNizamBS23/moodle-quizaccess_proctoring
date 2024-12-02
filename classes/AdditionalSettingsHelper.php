@@ -154,8 +154,8 @@ class AdditionalSettingsHelper {
     /**
      * Make query string from params
      *
-     * @param $email Email
-     * @param $username Username
+     * @param string $email 
+     * @param string $username 
      * @return array
      *
      */
@@ -190,8 +190,8 @@ class AdditionalSettingsHelper {
     /**
      * Make query string from params
      *
-     * @param $coursename Coursename
-     * @param $username Username
+     * @param string $coursename 
+     * @param string $username 
      * @return array
      *
      */
@@ -226,8 +226,8 @@ class AdditionalSettingsHelper {
     /**
      * Make query string from params
      *
-     * @param $quizname Quizname
-     * @param $username Username
+     * @param string $quizname 
+     * @param string $username 
      * @return array
      *
      */

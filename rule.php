@@ -90,8 +90,8 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
     /**
      * Makes the modal content
      *
-     * @param $quizform
-     * @param $faceidcheck
+     * @param mixed $quizform
+     * @param mixed $faceidcheck
      * @return string
      *
      * @throws coding_exception
@@ -172,17 +172,21 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
     }
 
     /**
-     * add_preflight_check_form_fields.
+     * Adds preflight check form fields to the quiz attempt form.
      *
-     * @param quizaccess_proctoring_preflight_form_alias $quizform
-     * @param mixed $mform
-     * @param mixed $attemptid
+     * This function sets up additional proctoring-related fields and JavaScript for the quiz attempt form.
+     * It includes configurations for screenshot intervals, image width, face validation, and more.
+     *
+     * @param quizaccess_proctoring_preflight_form_alias $quizform The quiz form object.
+     * @param MoodleQuickForm $mform The Moodle form object to which fields are added.
+     * @param int $attemptid The ID of the quiz attempt.
      *
      * @return void
      *
-     * @throws coding_exception
+     * @throws coding_exception If there is an error in the configuration.
      */
-    public function add_preflight_check_form_fields(quizaccess_proctoring_preflight_form_alias $quizform,
+    public function add_preflight_check_form_fields(
+        quizaccess_proctoring_preflight_form_alias $quizform,
                                                         MoodleQuickForm $mform, $attemptid) {
         global $PAGE, $DB, $USER, $CFG;
         $actionbtns = "";
