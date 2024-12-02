@@ -136,13 +136,13 @@ function quizaccess_proctoring_get_image_file($userid) {
             if ($userid == $file->get_itemid() && $file->get_filename() != '.') {
                 // Return the image file
                 // Get the record ID from the database.
-                $recordid = $DB->get_field('proctoring_user_images', 'id', array('user_id' => $userid));
+                $recordid = $DB->get_field('quizaccess_proctoring_user_images', 'id', array('user_id' => $userid));
 
                 // Delete the record from the database.
-                $DB->delete_records('proctoring_user_images', array('user_id' => $userid));
+                $DB->delete_records('quizaccess_proctoring_user_images', array('user_id' => $userid));
 
                 // Delete associated row from proctoring_face_images table.
-                $DB->delete_records('proctoring_face_images', array('parentid' => $recordid));
+                $DB->delete_records('quizaccess_proctoring_face_images', array('parentid' => $recordid));
 
                 return $file;
             }
@@ -213,7 +213,7 @@ function check_similarity_aws($referenceimageurl, $targetimageurl) {
 function execute_fm_task() {
     global $DB;
     // Get 5 task.
-    $sql = 'SELECT * FROM {proctoring_facematch_task} LIMIT 5';
+    $sql = 'SELECT * FROM {quizaccess_proctoring_facematch_task} LIMIT 5';
     $data = $DB->get_recordset_sql($sql);
     $facematchmethod = get_proctoring_settings('fcmethod');
     foreach ($data as $row) {
@@ -221,16 +221,11 @@ function execute_fm_task() {
         $reportid = $row->reportid;
         $refimageurl = $row->refimageurl;
         $targetimageurl = $row->targetimageurl;
-        if ($facematchmethod == 'AWS') {
-            // Get Match result.
-            get_match_result($refimageurl, $targetimageurl, $reportid);
-            // Delete from task table.
-            $DB->delete_records('proctoring_facematch_task', ['id' => $rowid]);
-        } else if ($facematchmethod == 'BS') {
+        if ($facematchmethod == 'BS') {
             list($userfaceimageurl, $webcamfaceimageurl) = get_face_images($reportid);
             extracted($userfaceimageurl, $webcamfaceimageurl, $reportid);
             // Delete from task table.
-            $DB->delete_records('proctoring_facematch_task', ['id' => $rowid]);
+            $DB->delete_records('quizaccess_proctoring_facematch_task', ['id' => $rowid]);
         } else {
             echo 'Invalid fc method<br/>';
         }
@@ -240,9 +235,9 @@ function execute_fm_task() {
 /**
  * Returns the similarity result from AWS API call.
  *
- * @param $refimageurl
- * @param $targetimageurl
- * @param $reportid
+ * @param string $refimageurl
+ * @param string $targetimageurl
+ * @param int $reportid
  *
  * @return mixed similarityresult
  */
@@ -347,7 +342,7 @@ function log_specific_quiz($courseid, $cmid, $studentid) {
             $inserttaskrow->targetimageurl = $snapshot;
             $inserttaskrow->reportid = $reportid;
             $inserttaskrow->timemodified = time();
-            $DB->insert_record('proctoring_facematch_task', $inserttaskrow);
+            $DB->insert_record('quizaccess_proctoring_facematch_task', $inserttaskrow);
         }
     }
 
@@ -419,7 +414,7 @@ function aws_analyze_specific_quiz($courseid, $cmid, $studentid) {
  * @param int $courseid the courseid
  * @param int $cmid the course module id
  * @param int $studentid the context
- * @param $redirecturl Redirect url
+ * @param mixed $redirecturl Redirect url
  *
  * @return bool false if no record found
  */
@@ -542,7 +537,7 @@ function aws_analyze_specific_image($reportid) {
  * Analyze specific image.
  *
  * @param int $reportid the context
- * @param $redirecturl
+ * @param mixed $redirecturl
  *
  * @return bool false if no record found
  */
@@ -631,12 +626,12 @@ function get_face_images($reportid) {
     global $DB;
     $reportdata = $DB->get_record('quizaccess_proctoring_logs', array('id' => $reportid));
     $studentid = $reportdata->userid;
-    $webcamfaceimage = $DB->get_record('proctoring_face_images', array('parentid' => $reportid, 'parent_type' => 'camshot_image'));
+    $webcamfaceimage = $DB->get_record('quizaccess_proctoring_face_images', array('parentid' => $reportid, 'parent_type' => 'camshot_image'));
     $webcamfaceimageurl = "";
     if ($webcamfaceimage) {
         $webcamfaceimageurl = $webcamfaceimage->faceimage;
     }
-    $userimagerow = $DB->get_record('proctoring_user_images', array('user_id' => $studentid));
+    $userimagerow = $DB->get_record('quizaccess_proctoring_user_images', array('user_id' => $studentid));
 
     $redirecturl = new moodle_url('/mod/quiz/accessrule/proctoring/upload_image.php', ['id' => $studentid]);
     if ($userimagerow == false) {
@@ -650,7 +645,7 @@ function get_face_images($reportid) {
     $userfaceimageurl = "";
     if ($userimagerow) {
         $userfaceimagerow = $DB->get_record(
-                                'proctoring_face_images',
+                                'quizaccess_proctoring_face_images',
                                 array('parentid' => $userimagerow->id, 'parent_type' => 'admin_image'));
         if ($userfaceimagerow) {
             $userfaceimageurl = $userfaceimagerow->faceimage;
@@ -662,9 +657,9 @@ function get_face_images($reportid) {
 /**
  * Gets the similarity result and checks with the threshold mentioned in the config.
  *
- * @param $profileimageurl
- * @param $targetimage
- * @param $reportid Report Id
+ * @param mixed $profileimageurl
+ * @param mixed $targetimage
+ * @param int $reportid Report Id
  *
  * @return void
  */
@@ -693,7 +688,7 @@ function extracted($profileimageurl, $targetimage, int $reportid): void {
  * Analyze specific image.
  *
  * @param int $reportid the context
- * @param $apiresponse API response from AWS
+ * @param mixed $apiresponse API response from AWS
  *
  * @return bool false if no record found
  */
@@ -813,7 +808,7 @@ function log_fm_warning($reportid) {
         $userid = $reportdata->userid;
         $courseid = $reportdata->courseid;
         $quizid = $reportdata->quizid;
-        $warningsql = 'SELECT * FROM {proctoring_fm_warnings} WHERE userid = :userid AND courseid = :courseid AND quizid = :quizid';
+        $warningsql = 'SELECT * FROM {quizaccess_proctoring_fm_warnings} WHERE userid = :userid AND courseid = :courseid AND quizid = :quizid';
 
         $params = [];
         $params['userid'] = $userid;
@@ -830,7 +825,7 @@ function log_fm_warning($reportid) {
             $warning->courseid = $courseid;
             $warning->quizid = $quizid;
             $warning->userid = $userid;
-            $DB->insert_record('proctoring_fm_warnings', $warning);
+            $DB->insert_record('quizaccess_proctoring_fm_warnings', $warning);
         }
     }
 }
@@ -839,11 +834,10 @@ function log_fm_warning($reportid) {
  * Returns the url of face image.
  *
  * @param string $data
- * @param $USER
- * @param int $courseid
+ * @param int $userid
  * @param stdClass $record
- * @param $context
- * @param $fs
+ * @param mixed $context
+ * @param mixed $fs
  *
  * @return mixed
  */

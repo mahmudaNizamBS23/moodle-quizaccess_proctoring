@@ -212,7 +212,7 @@ if (has_capability('quizaccess/proctoring:deletecamshots', $context, $USER->id)
     && !empty($logaction)
 ) {
     $DB->delete_records('quizaccess_proctoring_logs', ['courseid' => $courseid, 'quizid' => $cmid, 'userid' => $studentid]);
-    $DB->delete_records('proctoring_fm_warnings', ['courseid' => $courseid, 'quizid' => $cmid, 'userid' => $studentid]);
+    $DB->delete_records('quizaccess_proctoring_fm_warnings', ['courseid' => $courseid, 'quizid' => $cmid, 'userid' => $studentid]);
     // Delete users file (webcam images).
     $filesql = 'SELECT * FROM {files}
     WHERE userid = :studentid  AND contextid = :contextid  AND component = \'quizaccess_proctoring\' AND filearea = \'picture\'';
@@ -289,7 +289,7 @@ if (
          .' e.timemodified as timemodified, u.firstname as firstname, u.lastname as lastname, '
          .' u.email as email, pfw.reportid as warningid '
          .' from  {quizaccess_proctoring_logs} e INNER JOIN {user} u  ON u.id = e.userid '
-         .' LEFT JOIN {proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid '
+         .' LEFT JOIN {quizaccess_proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid '
          .' AND e.quizid = pfw.quizid AND e.userid = pfw.userid '
          ." WHERE e.courseid = '$courseid' AND e.quizid = '$cmid' AND u.id = '$studentid' AND e.id = '$reportid' ";
     }
@@ -301,7 +301,7 @@ if (
                 .MAX_REPORTID_STATUS_AS_STATUS
                 .MAX_E_TIMEMODIFIED_AS_TIMEMODIFIED
                 .PROCTORING_INNER_JOIN_USER_USERID
-                .' LEFT JOIN {proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid AND e.quizid = pfw.quizid '
+                .' LEFT JOIN {quizaccess_proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid AND e.quizid = pfw.quizid '
                 .' AND e.userid = pfw.userid '
                 ." WHERE e.courseid = '$courseid' AND e.quizid = '$cmid' "
                 .' group by e.userid, u.firstname, u.lastname, u.email, pfw.reportid ';
@@ -314,7 +314,7 @@ if (
                 .MAX_REPORTID_STATUS_AS_STATUS
                 .MAX_E_TIMEMODIFIED_AS_TIMEMODIFIED
                 .PROCTORING_INNER_JOIN_USER_USERID
-                .' LEFT JOIN {proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid '
+                .' LEFT JOIN {quizaccess_proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid '
                 .' AND e.quizid = pfw.quizid AND e.userid = pfw.userid '
                 ." WHERE e.courseid = '$courseid' AND e.quizid = '$cmid' "
                 .' group by e.userid, u.firstname, u.lastname, u.email, pfw.reportid ';
@@ -327,7 +327,7 @@ if (
                 .MAX_REPORTID_STATUS_AS_STATUS
                 .MAX_E_TIMEMODIFIED_AS_TIMEMODIFIED
                 .PROCTORING_INNER_JOIN_USER_USERID
-                .' LEFT JOIN {proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid AND '
+                .' LEFT JOIN {quizaccess_proctoring_fm_warnings} pfw ON e.courseid = pfw.courseid AND '
                 .' e.quizid = pfw.quizid AND e.userid = pfw.userid '
                 .' WHERE '
                 ." (e.courseid = '$courseid' AND e.quizid = '$cmid' AND "

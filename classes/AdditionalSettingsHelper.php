@@ -341,7 +341,7 @@ class AdditionalSettingsHelper {
                 $patharray = explode("/", $fileurl);
                 $filename = end($patharray);
 
-                $DB->delete_records('proctoring_fm_warnings', array('reportid' => $id));
+                $DB->delete_records('quizaccess_proctoring_fm_warnings', array('reportid' => $id));
                 $DB->delete_records('quizaccess_proctoring_logs', array('id' => $id));
 
                 $filesql = "SELECT * FROM {files}

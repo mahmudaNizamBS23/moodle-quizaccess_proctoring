@@ -254,7 +254,7 @@ class quizaccess_proctoring_external extends external_api {
             $record->faceimage = "{$url}";
             $record->facefound = $facefound;
             $record->timemodified = time();
-            $screenshotid = $DB->insert_record('proctoring_face_images', $record, true);
+            $screenshotid = $DB->insert_record('quizaccess_proctoring_face_images', $record, true);
 
             $result = array();
             $result['screenshotid'] = $screenshotid;
@@ -431,7 +431,7 @@ class quizaccess_proctoring_external extends external_api {
         $record->faceimage = "{$url}";
         $record->facefound = $facefound;
         $record->timemodified = time();
-        $faceimageid = $DB->insert_record('proctoring_face_images', $record, true);
+        $faceimageid = $DB->insert_record('quizaccess_proctoring_face_images', $record, true);
         $profileimageurl = quizaccess_proctoring_get_image_url( $USER->id);
         if ($profileimageurl == false) {
             $result = array();
