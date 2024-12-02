@@ -165,13 +165,13 @@ function xmldb_quizaccess_proctoring_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2021112604, 'quizaccess', 'proctoring');
     }
 
-    if ($oldversion < 2024100102) { 
+    if ($oldversion < 2024100102) {
         $table = new xmldb_table('proctoring_facematch_task');
         $dbman->rename_table($table, 'quizaccess_proctoring_facematch_task');
 
-        upgrade_plugin_savepoint(true,  2024100102,'quizaccess', 'proctoring');
+        upgrade_plugin_savepoint(true,  2024100102, 'quizaccess', 'proctoring');
     }
-    if ($oldversion < 2024100103) { 
+    if ($oldversion < 2024100103) {
         $table = new xmldb_table('proctoring_fm_warnings');
         $dbman->rename_table($table, 'quizaccess_proctoring_fm_warnings');
         $table = new xmldb_table('proctoring_user_images');
@@ -179,11 +179,10 @@ function xmldb_quizaccess_proctoring_upgrade($oldversion) {
         $table = new xmldb_table('proctoring_face_images');
         $dbman->rename_table($table, 'quizaccess_proctoring_face_images');
 
-        upgrade_plugin_savepoint(true,  2024100103,'quizaccess', 'proctoring');
+        upgrade_plugin_savepoint(true,  2024100103, 'quizaccess', 'proctoring');
     }
 
-    if ($oldversion < 2024100104) { 
-        
+    if ($oldversion < 2024100104) {
         $table = new xmldb_table('aws_api_log');
 
         if ($dbman->table_exists($table)) {
