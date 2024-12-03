@@ -454,7 +454,7 @@ if (
         $pictures = '';
 
         $user = core_user::get_user($studentid);
-        $thresholdvalue = (int) get_proctoring_settings('awsfcthreshold');
+        $thresholdvalue = (int) quizaccess_get_proctoring_settings('awsfcthreshold');
 
         foreach ($sqlexecuted as $info) {
             $d = basename($info->webcampicture, '.png');

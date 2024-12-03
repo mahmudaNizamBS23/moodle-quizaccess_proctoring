@@ -443,16 +443,16 @@ class quizaccess_proctoring_external extends external_api {
 
         // Face check.
         require_once($CFG->dirroot.'/mod/quiz/accessrule/proctoring/lib.php');
-        $method = get_proctoring_settings("fcmethod");
+        $method = quizaccess_get_proctoring_settings("fcmethod");
         if ($method == "AWS") {
-            aws_analyze_specific_image($screenshotid);
+            quizaccess_aws_analyze_specific_image($screenshotid);
         } else if ($method == "BS") {
-            bs_analyze_specific_image_from_validate($screenshotid);
+            quizaccess_bs_analyze_specific_image_from_validate($screenshotid);
         }
 
         $currentdata = $DB->get_record('quizaccess_proctoring_logs', array('id' => $screenshotid));
         $awsscore = $currentdata->awsscore;
-        $threshhold = (int)get_proctoring_settings('awsfcthreshold');
+        $threshhold = (int)quizaccess_get_proctoring_settings('awsfcthreshold');
 
         if ($awsscore > $threshhold) {
             $status = "success";
