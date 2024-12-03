@@ -33,7 +33,7 @@ $contextid = optional_param('context', $systemcontext->id, PARAM_INT);
 // Check permissions.
 list($context, $course, $cm) = get_context_info_array($contextid);
 require_login($course, false, $cm);
-require_capability('quizaccess/proctoring:deletecamshots', $context);
+has_capability('quizaccess/proctoring:deletecamshots', $context);
 
 $pageurl = new moodle_url('/mod/quiz/accessrule/proctoring/externalsettings.php');
 $PAGE->set_url($pageurl);

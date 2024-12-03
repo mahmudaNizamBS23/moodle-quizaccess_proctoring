@@ -162,7 +162,7 @@ $PAGE->requires->js_call_amd('quizaccess_proctoring/lightbox2');
 $settingsbtn = '';
 $logbtn = '';
 
-if (require_capability('quizaccess/proctoring:deletecamshots', $context, $USER->id)) {
+if (has_capability('quizaccess/proctoring:deletecamshots', $context, $USER->id)) {
     $settingspageurl = $CFG->wwwroot.'/mod/quiz/accessrule/proctoring/proctoringsummary.php?cmid='.$cmid;
     $settingsbtnlabel = 'Proctoring Summary Report';
     $settingsbtn = '<a class="btn btn-primary" href="'.$settingspageurl.'">'.$settingsbtnlabel.'</a>';
@@ -204,7 +204,7 @@ if ($submittype == 'Search' && $searchkey != null) {
 }
 
 
-if (require_capability('quizaccess/proctoring:deletecamshots', $context, $USER->id)
+if (has_capability('quizaccess/proctoring:deletecamshots', $context, $USER->id)
     && $studentid != null
     && $cmid != null
     && $courseid != null
@@ -278,7 +278,7 @@ echo '<div style="float: left">'.$searchform.DIV.'<div class="text-xs-left text-
     .get_string('eprotroringreportsdesc', 'quizaccess_proctoring').'</div>
 ';
 if (
-    require_capability('quizaccess/proctoring:viewreport', $context, $USER->id) &&
+    has_capability('quizaccess/proctoring:viewreport', $context, $USER->id) &&
     $cmid != null &&
     $courseid != null) {
     // Check if report if for some user.

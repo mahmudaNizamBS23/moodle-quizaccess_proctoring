@@ -35,7 +35,7 @@ $deleteidstring = optional_param('deleteidstring', '', PARAM_RAW);
 $formtype = optional_param('form_type', '', PARAM_TEXT);
 $context = context_module::instance($cmid, MUST_EXIST);
 
-require_capability('quizaccess/proctoring:deletecamshots', $context);
+has_capability('quizaccess/proctoring:deletecamshots', $context);
 
 $params = array(
     'cmid' => $cmid,

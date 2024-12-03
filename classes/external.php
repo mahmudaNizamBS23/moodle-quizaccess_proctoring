@@ -83,7 +83,7 @@ class quizaccess_proctoring_external extends external_api {
             $params['userid'] = $USER->id;
         }
 
-        self::request_user_require_capability($params, $context, $USER);
+        self::request_user_has_capability($params, $context, $USER);
 
         $warnings = array();
         if ($params['quizid']) {
@@ -294,13 +294,13 @@ class quizaccess_proctoring_external extends external_api {
      * @throws moodle_exception
      * @throws required_capability_exception
      */
-    protected static function request_user_require_capability(array $params, context $context, $USER) {
+    protected static function request_user_has_capability(array $params, context $context, $USER) {
         $user = core_user::get_user($params['userid'], '*', MUST_EXIST);
         core_user::require_active_user($user);
 
         // Extra checks so only users with permissions can view other users reports.
         if ($USER->id != $user->id) {
-            require_capability('quizaccess/proctoring:viewreport', $context);
+            has_capability('quizaccess/proctoring:viewreport', $context);
         }
     }
 

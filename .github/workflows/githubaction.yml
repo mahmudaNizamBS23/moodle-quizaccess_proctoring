@@ -84,7 +84,7 @@ jobs:
  
       - name: Mustache Lint
         if: ${{ !cancelled() }}
-        run: moodle-plugin-ci mustache mod/quiz/accessrule/proctoring
+        run: moodle-plugin-ci mustache mod/quiz/accessrule/proctoring/templates
  
       - name: Grunt
         if: ${{ !cancelled() }}
