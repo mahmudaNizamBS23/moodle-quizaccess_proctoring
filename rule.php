@@ -493,7 +493,7 @@ class quizaccess_proctoring extends quizaccess_proctoring_parent_class_alias {
         global $OUTPUT, $USER;
 
         $context = context_module::instance($this->quiz->cmid, MUST_EXIST);
-        if (has_capability('quizaccess/proctoring:viewreport', $context, $USER->id)) {
+        if (require_capability('quizaccess/proctoring:viewreport', $context, $USER->id)) {
             $httplink = \quizaccess_proctoring\LinkGenerator::get_link($this->quiz->course, $this->quiz->cmid, false, is_https());
 
             return $OUTPUT->single_button($httplink, get_string('picturesreport', 'quizaccess_proctoring'), 'get');
