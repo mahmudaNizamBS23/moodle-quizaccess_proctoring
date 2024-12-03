@@ -81,10 +81,7 @@ jobs:
       - name: Check upgrade savepoints
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci savepoints mod/quiz/accessrule/proctoring
-
-      - name: Debug Paths
-        run: realpath mod/quiz/accessrule/proctoring/templates/proctoring_pro_promo.mustache
-
+        
       - name: Mustache Lint
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci mustache mod/quiz/accessrule/proctoring
