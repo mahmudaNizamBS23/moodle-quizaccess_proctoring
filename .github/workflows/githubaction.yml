@@ -83,7 +83,7 @@ jobs:
         run: moodle-plugin-ci savepoints mod/quiz/accessrule/proctoring
         
       - name: Mustache Lint
-  run: moodle-plugin-ci mustache --moodle-dir=$MOODLE_DIR mod/quiz/accessrule/proctoring
+        run: moodle-plugin-ci mustache --moodle-dir=$MOODLE_DIR mod/quiz/accessrule/proctoring
 
  
       - name: Grunt
