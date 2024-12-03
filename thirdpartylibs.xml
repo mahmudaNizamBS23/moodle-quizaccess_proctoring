@@ -7,13 +7,7 @@
         <license>MIT</license>
     </library>
 
-    <library>
-        <location>vendor/autoload.php</location>
-        <name>Composer Autoload</name>
-        <version>6.5.2</version>
-        <license>MIT</license>
-        <licenseversion></licenseversion>
-    </library>
+    
 
     <library>
         <location>vendor/composer/</location>
